@@ -6,8 +6,6 @@ import requests
 from airflow.models import Variable
 
 def fetch_api_key():
-    print("hello")
-    print(Variable.get("API_KEY1"))
     keys = [Variable.get("API_KEY1"), Variable.get("API_KEY2")]
 
     if not keys:
@@ -26,7 +24,8 @@ def call_api(api_key: str) -> dict:
     
     resp = resp.json()
 
-    data = {"base": resp["base"], "temp": resp["main"]["temp"], "feels_like": resp["main"]["feels_like"], 
+    data = {"base": resp["base"], "temp": resp["main"]["temp"], "temp_min": resp["main"]["temp_min"], "temp_max": resp["main"]["temp_max"],
+            "feels_like": resp["main"]["feels_like"], "wind_speed": resp["wind"]["speed"], "wind_direction": resp["wind"]["deg"],
             "pressure": resp["main"]["pressure"], "humidity": resp["main"]["humidity"], "visibility": resp["visibility"], 
             "cloudiness": resp["clouds"]["all"], "timestamp": resp["dt"], "sunrise_ts": resp["sys"]["sunrise"], 
             "sunset_ts": resp["sys"]["sunset"], "timezone": resp["timezone"]}
