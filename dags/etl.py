@@ -130,7 +130,7 @@ def merge_transform(ti):
 with DAG(
     dag_id = 'weatherflow_etl',
     default_args = default_args,
-    start_date = datetime(2023, 11, 19),
+    start_date = datetime.now() + timedelta(minutes=15),
     schedule_interval = timedelta(minutes=5),
     template_searchpath = '/home/pratik/weatherflow/dags',
     catchup=False,
