@@ -1,9 +1,12 @@
-DROP TABLE `W_FACT`;
-DROP TABLE `W_STATION_DIM`;
-DROP TABLE `W_TIME_DIM`;
-DROP TABLE `W_PARAM_DIM`;
-DROP TABLE `W_TEMP_DIM`;
-DROP TABLE `W_HEAT_INDEX_DIM`;
+-- Table used to store station information
+CREATE TABLE `W_STATION` (
+  `station_id` integer PRIMARY KEY,
+  `lat` float,
+  `long` float,
+  `city` varchar(255),
+  `country_code` varchar(255),
+  `enabled` int
+);
 
 CREATE TABLE `W_FACT` (
   `record_id` varchar(255),
@@ -12,14 +15,6 @@ CREATE TABLE `W_FACT` (
   `parameter_id` varchar(255),
   `temp_id` varchar(255),
   `heat_index_id` varchar(255)
-);
-
-CREATE TABLE `W_STATION_DIM` (
-  `station_id` integer PRIMARY KEY,
-  `lat` float,
-  `long` float,
-  `city` varchar(255),
-  `country_code` varchar(255)
 );
 
 CREATE TABLE `W_TIME_DIM` (
